@@ -67,54 +67,56 @@ void ledArcadianStart()
             LED_PWM_RED_SetPulseWidth(ledWidthCountRed);
             ledWidthCountRed = ledWidthCountRed + INCREMENT_PULSE_WIDTH ;
             
-            ledWidthCountYellow = ledWidthCountYellow - INCREMENT_PULSE_WIDTH ;
-            if(ledWidthCountYellow > 0)
+            ledWidthCountGreen = ledWidthCountGreen - INCREMENT_PULSE_WIDTH ;
+            if(ledWidthCountGreen >= 0)
             {
-                LED_PWM_YELLOW_SetPulseWidth(ledWidthCountYellow);
+            LED_PWM_GREEN_SetPulseWidth(ledWidthCountGreen);    
             }
-        }
-        else
-        {
-           faderLedState = LED_GREEN_STATE ; 
-           ledWidthCountYellow = 0;
-        }
-        break;
-        
-     case LED_GREEN_STATE :
-        if (ledWidthCountGreen <= 255)
-        {
-            ledWidthCountRed = ledWidthCountRed - INCREMENT_PULSE_WIDTH ;
-            if(ledWidthCountRed >= 0)
-            {
-                LED_PWM_RED_SetPulseWidth(ledWidthCountRed);    
-            }
-            LED_PWM_GREEN_SetPulseWidth(ledWidthCountGreen);
-            ledWidthCountGreen = ledWidthCountGreen + INCREMENT_PULSE_WIDTH ;        
+   
         }
         else
         {
            faderLedState = LED_YELLOW_STATE ; 
+           ledWidthCountGreen = 0;
         }
         break;
         
      case LED_YELLOW_STATE :
         if (ledWidthCountYellow <= 255)
         {
-            ledWidthCountGreen = ledWidthCountGreen - INCREMENT_PULSE_WIDTH ;
-            if(ledWidthCountGreen >= 0)
+            ledWidthCountRed = ledWidthCountRed - INCREMENT_PULSE_WIDTH ;
+            if(ledWidthCountRed >= 0)
             {
-            LED_PWM_GREEN_SetPulseWidth(ledWidthCountGreen);    
-            }        
+                LED_PWM_RED_SetPulseWidth(ledWidthCountRed);    
+            }
+                    
             LED_PWM_YELLOW_SetPulseWidth(ledWidthCountYellow);
             ledWidthCountYellow = ledWidthCountYellow + INCREMENT_PULSE_WIDTH ;
         }
         else
         {
-           faderLedState = LED_RED_STATE ; 
+           faderLedState = LED_GREEN_STATE ; 
         }
         
         break;
-    
+
+        case LED_GREEN_STATE :
+        if (ledWidthCountGreen <= 255)
+        {
+            ledWidthCountYellow = ledWidthCountYellow - INCREMENT_PULSE_WIDTH ;
+            if(ledWidthCountYellow >= 0)
+            {
+                LED_PWM_YELLOW_SetPulseWidth(ledWidthCountYellow);
+            }
+            
+            LED_PWM_GREEN_SetPulseWidth(ledWidthCountGreen);
+            ledWidthCountGreen = ledWidthCountGreen + INCREMENT_PULSE_WIDTH ;        
+        }
+        else
+        {
+           faderLedState = LED_RED_STATE ; 
+        }
+        break;
     }    
     
 }
