@@ -20,8 +20,8 @@
 /*****************************************************************************/
 /* Include files                                                             */
 /*****************************************************************************/
-#include "ledFaderArcadian.h"
-
+#include "ledGlower.h"
+#include "led.h"
 /*****************************************************************************/
 /* Local pre-processor symbols/macros ('#define')                            */
 /*****************************************************************************/
@@ -37,7 +37,21 @@
 /*****************************************************************************/
 /* Local variable definitions ('static')                                     */
 /*****************************************************************************/
-static int arcadianCounter = 0;
+const RG__Glow_t RG_glowtable[LED_GLOWER_TABLE_LENGTH] = 
+    {
+        //Red Green Blue TimeInMS
+        {255, 0, 0, 500},
+        {0, 255, 0, 500},
+        {0, 0, 255, 500},
+        {0, 0, 0, 100},
+        {255, 255, 255, 100},
+        {0, 0, 0, 100},
+        {255, 255, 255, 100},
+        {0, 0, 0, 100},
+        {255, 255, 255, 100}
+    };
+
+static uint16_t glowerCounter = 0;
 
 /*****************************************************************************/
 /* Local function prototypes ('static')                                      */
@@ -47,56 +61,29 @@ static int arcadianCounter = 0;
 /*****************************************************************************/
 /* Function implementation - global ('extern') and local ('static')          */
 /*****************************************************************************/
-
-void ledArcadianStart()
+/*
+ * Triggered by a Task Led fader which is triggered every 5ms
+ */
+void glowRGBPwmLedInSequence()
 {
-    arcadianCounter = arcadianCounter + ARCADIAN_LED_INCREMENT_PULSE_WIDTH ;
+    glowerCounter = glowerCounter + LED_GLOWER_COUNT_STEP_VALUE;
+    static uint8_t index = 0;
     
-    if ((arcadianCounter > 0)  &&  (arcadianCounter <=255))
-    {
-    led_PWM(LED_PWM_RED,arcadianCounter);  
-    }
-    else if ((arcadianCounter > 255)  &&  (arcadianCounter <=510))
-    {
-      led_PWM(LED_PWM_RED,(510 - arcadianCounter));
-      led_PWM(LED_PWM_YELLOW,arcadianCounter-255);
-    }
-    else if ((arcadianCounter > 510)  &&  (arcadianCounter <=765))
-    {
-      led_PWM(LED_PWM_YELLOW,(765 - arcadianCounter));
-      led_PWM(LED_PWM_GREEN,arcadianCounter-510);        
-    }
-    else if ((arcadianCounter > 765) && (arcadianCounter <=1020))
-    {
-      led_PWM(LED_PWM_GREEN,(1020 - arcadianCounter)); 
-      //@ToDo: Check if red has to be added in the same range,
-      // If we add red in this state it wil glow twice , not the case 
-      // either we need to add a flag and gaurd the case or the  
-      // arcadianCounter has to be set to 256 rather than 0.
-      //led_PWM(LED_PWM_RED,arcadianCounter-765);
+    
+    if (index < LED_GLOWER_TABLE_LENGTH)
+    {   //ToDo: Error Handling of division, Step value can never be zero
+        //Also the Multiplying factor will also change if step changes
+        if (((RG_glowtable[index].elapsedTime) / (glowerCounter*5)) == 1)
+        {
+            LED_RGB_Set(RG_glowtable[index].rgbRedPwmVal,RG_glowtable[index].rgbYellowPwmVal,RG_glowtable[index].rgbGreenPwmVal);
+            glowerCounter = 0;
+            index++;
+        }      
     }
     else
     {
-     arcadianCounter = 0;
-     //arcadianCounter = 256;   
+     index = 0;   
     }
     
-}
-
-void led_PWM(faderLed_t faderLedType, int ledPulseWidthValue )
-{
-    switch(faderLedType)
-    {
-        case LED_PWM_RED : 
-            LED_PWM_RED_SetPulseWidth(ledPulseWidthValue);
-            break;
-        
-        case LED_PWM_YELLOW :
-            LED_PWM_YELLOW_SetPulseWidth(ledPulseWidthValue);
-            break;
-        
-        case LED_PWM_GREEN :
-            LED_PWM_GREEN_SetPulseWidth(ledPulseWidthValue);
-            break;
-    }
+       
 }

@@ -69,37 +69,43 @@
 * The user represents and warrants that it will NOT use or redistribute the Software for such purposes.
 * This prototype is for research purposes only. This software is provided "AS IS," without a warranty of any kind.
 **/
- 
-#ifndef LEDFADERARCADIAN_H
-#define LEDFADERARCADIAN_H
 
-#include "led.h"
-    
+#ifndef LEDGLOWER_H
+#define LEDGLOWER_H
+
+#include "global.h"    
+/*****************************************************************************/
+/* Global pre-processor symbols/macros and type declarations                 */
+/*****************************************************************************/
+
+//####################### Defines/Macros
+/** 
+ * \brief a brief description of what the define is representing
+*
+* If needed, a more detailed description can be given below */
+#define LED_GLOWER_TABLE_LENGTH 9
+#define LED_GLOWER_COUNT_STEP_VALUE 1     
+typedef struct
+{
+    uint8_t rgbRedPwmVal;
+    uint8_t rgbYellowPwmVal;
+    uint8_t rgbGreenPwmVal;
+    uint16_t elapsedTime;
+}RG__Glow_t;
+
 /*****************************************************************************/
 /* API functions                                                             */
 /*****************************************************************************/
-
-#define ARCADIAN_LED_INCREMENT_PULSE_WIDTH 1 
-#define FADER_ALARM_EXPIRE_TIME 5    
-    
-typedef enum faderLed_e
-{
-    LED_PWM_RED,
-    LED_PWM_GREEN,
-    LED_PWM_YELLOW,
-}faderLed_t;
 
 /**
  * <Description>
  * @param <Format: copy of the parameter type and name - description>
  * @return <return description>
  */
-void ledArcadianStart();
-void led_PWM(faderLed_t faderLedType,int ledPulseWidthValue);
+void glowRGBPwmLedInSequence();
 
 
 
 
 
-
-#endif /* LEDFADERARCADIAN_H */
+#endif /* LEDGLOWER_H */

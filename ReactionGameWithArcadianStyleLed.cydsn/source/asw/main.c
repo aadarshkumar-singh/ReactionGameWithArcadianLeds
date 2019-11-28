@@ -16,6 +16,7 @@
 #include "led.h"
 #include "seven.h"
 #include "ledFaderArcadian.h"
+#include "ledGlower.h"
 
 ISR(systick_handler)
 {
@@ -57,7 +58,7 @@ TASK(tsk_init)
     // Must be started after interrupt reconfiguration
     EE_systick_start();
     //Start the alarm with 100ms cycle time
-    SetRelAlarm(alarm_ledFader,100,100);
+    SetRelAlarm(alarm_ledFader,FADER_ALARM_EXPIRE_TIME,FADER_ALARM_EXPIRE_TIME);
     
     TerminateTask();
 }
@@ -65,6 +66,7 @@ TASK(tsk_init)
 TASK(tsk_ledFader)
 {
     ledArcadianStart();
+    glowRGBPwmLedInSequence();    
     TerminateTask();
 }
 

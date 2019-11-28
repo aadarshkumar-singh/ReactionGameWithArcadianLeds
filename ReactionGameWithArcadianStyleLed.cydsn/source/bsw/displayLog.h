@@ -69,37 +69,58 @@
 * The user represents and warrants that it will NOT use or redistribute the Software for such purposes.
 * This prototype is for research purposes only. This software is provided "AS IS," without a warranty of any kind.
 **/
- 
-#ifndef LEDFADERARCADIAN_H
-#define LEDFADERARCADIAN_H
 
-#include "led.h"
-    
+
+ 
+#ifndef DISPLAYLOG_H
+#define DISPLAYLOG_H
+
+/*****************************************************************************/
+/* Global pre-processor symbols/macros and type declarations                 */
+/*****************************************************************************/
+
+//####################### Defines/Macros
+/** 
+ * \brief a brief description of what the define is representing
+*
+* If needed, a more detailed description can be given below */
+
+//####################### Enumerations
+/**
+* \brief Enumerations. Use brief, otherwise the index won't have a brief explanation.
+*
+* Detailed explaination of the enumeration.
+*/
+
+//####################### Structures
+/**
+* \brief The purpose as well as the members of a structure have to be documented.
+*
+* Make clear what the structure is used for and what is the purpose of the members.
+*/
+
+
+/*****************************************************************************/
+/* Extern global variables                                                   */
+/*****************************************************************************/
+
+/**
+ * <description>
+ */
+
+
 /*****************************************************************************/
 /* API functions                                                             */
 /*****************************************************************************/
-
-#define ARCADIAN_LED_INCREMENT_PULSE_WIDTH 1 
-#define FADER_ALARM_EXPIRE_TIME 5    
-    
-typedef enum faderLed_e
-{
-    LED_PWM_RED,
-    LED_PWM_GREEN,
-    LED_PWM_YELLOW,
-}faderLed_t;
 
 /**
  * <Description>
  * @param <Format: copy of the parameter type and name - description>
  * @return <return description>
  */
-void ledArcadianStart();
-void led_PWM(faderLed_t faderLedType,int ledPulseWidthValue);
 
 
 
 
 
-
-#endif /* LEDFADERARCADIAN_H */
+#endif /* DISPLAYLOG_H */

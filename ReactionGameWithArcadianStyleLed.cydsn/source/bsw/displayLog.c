@@ -20,7 +20,6 @@
 /*****************************************************************************/
 /* Include files                                                             */
 /*****************************************************************************/
-#include "ledFaderArcadian.h"
 
 /*****************************************************************************/
 /* Local pre-processor symbols/macros ('#define')                            */
@@ -37,7 +36,8 @@
 /*****************************************************************************/
 /* Local variable definitions ('static')                                     */
 /*****************************************************************************/
-static int arcadianCounter = 0;
+
+
 
 /*****************************************************************************/
 /* Local function prototypes ('static')                                      */
@@ -48,55 +48,9 @@ static int arcadianCounter = 0;
 /* Function implementation - global ('extern') and local ('static')          */
 /*****************************************************************************/
 
-void ledArcadianStart()
-{
-    arcadianCounter = arcadianCounter + ARCADIAN_LED_INCREMENT_PULSE_WIDTH ;
-    
-    if ((arcadianCounter > 0)  &&  (arcadianCounter <=255))
-    {
-    led_PWM(LED_PWM_RED,arcadianCounter);  
-    }
-    else if ((arcadianCounter > 255)  &&  (arcadianCounter <=510))
-    {
-      led_PWM(LED_PWM_RED,(510 - arcadianCounter));
-      led_PWM(LED_PWM_YELLOW,arcadianCounter-255);
-    }
-    else if ((arcadianCounter > 510)  &&  (arcadianCounter <=765))
-    {
-      led_PWM(LED_PWM_YELLOW,(765 - arcadianCounter));
-      led_PWM(LED_PWM_GREEN,arcadianCounter-510);        
-    }
-    else if ((arcadianCounter > 765) && (arcadianCounter <=1020))
-    {
-      led_PWM(LED_PWM_GREEN,(1020 - arcadianCounter)); 
-      //@ToDo: Check if red has to be added in the same range,
-      // If we add red in this state it wil glow twice , not the case 
-      // either we need to add a flag and gaurd the case or the  
-      // arcadianCounter has to be set to 256 rather than 0.
-      //led_PWM(LED_PWM_RED,arcadianCounter-765);
-    }
-    else
-    {
-     arcadianCounter = 0;
-     //arcadianCounter = 256;   
-    }
-    
-}
+/**
+ * <Description>
+ * @param <first para>
+ * @return <return value>
+ */
 
-void led_PWM(faderLed_t faderLedType, int ledPulseWidthValue )
-{
-    switch(faderLedType)
-    {
-        case LED_PWM_RED : 
-            LED_PWM_RED_SetPulseWidth(ledPulseWidthValue);
-            break;
-        
-        case LED_PWM_YELLOW :
-            LED_PWM_YELLOW_SetPulseWidth(ledPulseWidthValue);
-            break;
-        
-        case LED_PWM_GREEN :
-            LED_PWM_GREEN_SetPulseWidth(ledPulseWidthValue);
-            break;
-    }
-}
