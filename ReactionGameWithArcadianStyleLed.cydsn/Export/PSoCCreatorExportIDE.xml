@@ -40,6 +40,10 @@
           <File BuildType="BUILD" Toolchain="">source\asw\main.c</File>
           <File BuildType="BUILD" Toolchain="">source\asw\ledFaderArcadian.c</File>
           <File BuildType="BUILD" Toolchain="">source\asw\ledFaderArcadian.h</File>
+          <File BuildType="BUILD" Toolchain="">source\asw\ledGlower.c</File>
+          <File BuildType="BUILD" Toolchain="">source\asw\ledGlower.h</File>
+          <File BuildType="BUILD" Toolchain="">source\asw\reactionGame.c</File>
+          <File BuildType="BUILD" Toolchain="">source\asw\reactionGame.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\aadarshxp\_MastersEmbeddedSystem\Projects\Assignment_EOS\EOS_Assignment_AadarshKumarSingh\assignment_erikaos\ReactionGameWithArcadianStyleLed.cydsn">
@@ -52,6 +56,10 @@
           <File BuildType="BUILD" Toolchain="">source\bsw\led.h</File>
           <File BuildType="BUILD" Toolchain="">source\bsw\seven.c</File>
           <File BuildType="BUILD" Toolchain="">source\bsw\seven.h</File>
+          <File BuildType="BUILD" Toolchain="">source\bsw\displayLog.c</File>
+          <File BuildType="BUILD" Toolchain="">source\bsw\displayLog.h</File>
+          <File BuildType="BUILD" Toolchain="">source\bsw\timer.c</File>
+          <File BuildType="BUILD" Toolchain="">source\bsw\timer.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\aadarshxp\_MastersEmbeddedSystem\Projects\Assignment_EOS\EOS_Assignment_AadarshKumarSingh\assignment_erikaos\ReactionGameWithArcadianStyleLed.cydsn">

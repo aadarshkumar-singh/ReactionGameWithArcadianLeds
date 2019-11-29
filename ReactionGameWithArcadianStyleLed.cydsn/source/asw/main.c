@@ -17,6 +17,13 @@
 #include "seven.h"
 #include "ledFaderArcadian.h"
 #include "ledGlower.h"
+#include "displayLog.h"
+#include "button.h"
+#include "reactionGame.h"
+#include "timer.h"
+
+static uint8_t pressedButton = 0;
+
 
 ISR(systick_handler)
 {
@@ -51,14 +58,24 @@ TASK(tsk_init)
     //Init MCAL Drivers
     LED_Init();
     SEVEN_Init();
+    //Initialise UART
+    displayLog_Start();
+        
     //Reconfigure ISRs with OS parameters.
     //This line MUST be called after the hardware driver
     //initialization!
     EE_system_init();
     // Must be started after interrupt reconfiguration
     EE_systick_start();
+    
+    displayLog_PrintString("\nWelcome to The Reaction Game with Arcadian Style");
+    
     //Start the alarm with 100ms cycle time
-    SetRelAlarm(alarm_ledFader,FADER_ALARM_EXPIRE_TIME,FADER_ALARM_EXPIRE_TIME);
+    SetRelAlarm(alarm_ledFader,10,FADER_ALARM_EXPIRE_TIME);
+    SetRelAlarm(alarm_Timer,10,1);
+
+    ActivateTask(tsk_gameControl);
+    ActivateTask(tsk_Background);
     
     TerminateTask();
 }
@@ -67,6 +84,17 @@ TASK(tsk_ledFader)
 {
     ledArcadianStart();
     glowRGBPwmLedInSequence();    
+    TerminateTask();
+}
+
+TASK(tsk_Timer)
+{
+    incrementTimerValue();
+    if (timeOutOccured())
+    {
+       SetEvent(tsk_gameControl, ev_Timeout);
+    }
+    
     TerminateTask();
 }
 
@@ -79,5 +107,35 @@ TASK(tsk_Background)
     }
 }
 
+TASK(tsk_gameControl)
+{
+    EventMaskType ev = 0;   
+    
+    while(1)
+    {
+        WaitEvent(ev_Button | ev_Timeout);
+        GetEvent(tsk_gameControl,&ev);
+        ClearEvent(ev);
+        processEventReactionGame(ev,pressedButton);
+    }
+}
+
+/********************************************************************************
+ * ISR Definitions
+ ********************************************************************************/
+
+ISR2(isr_Button)
+{
+    if (TRUE == BUTTON_IsPressed(BUTTON_1))
+    {
+        pressedButton = 1;
+        SetEvent(tsk_gameControl, ev_Button);
+    }
+    else if(TRUE == BUTTON_IsPressed(BUTTON_2))
+    {
+        pressedButton = 2;
+        SetEvent(tsk_gameControl, ev_Button);
+    }
+}
 
 /* [] END OF FILE */

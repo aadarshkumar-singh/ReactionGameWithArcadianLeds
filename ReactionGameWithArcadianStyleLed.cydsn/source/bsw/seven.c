@@ -154,7 +154,7 @@ RC_t SEVEN_Get(SEVEN_id_t sevenId, sint8_t* value)
  */
 RC_t SEVEN_SetHex(uint8_t value)
 {
-    SEVEN_Set(SEVEN_1, value / 16);
+    SEVEN_Set(SEVEN_1, value % 16);
     SEVEN_Set(SEVEN_0, value % 16);
     
     return RC_SUCCESS;

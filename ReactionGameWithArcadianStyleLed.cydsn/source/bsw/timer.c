@@ -20,7 +20,7 @@
 /*****************************************************************************/
 /* Include files                                                             */
 /*****************************************************************************/
-#include "displayLog.h"
+#include "timer.h"
 /*****************************************************************************/
 /* Local pre-processor symbols/macros ('#define')                            */
 /*****************************************************************************/
@@ -42,7 +42,8 @@
 /*****************************************************************************/
 /* Local function prototypes ('static')                                      */
 /*****************************************************************************/
-
+static uint16_t timeTobeSet = 0;
+static uint16_t timerCount = 0;
 
 /*****************************************************************************/
 /* Function implementation - global ('extern') and local ('static')          */
@@ -53,22 +54,31 @@
  * @param <first para>
  * @return <return value>
  */
-void displayLog_Start()
+
+void setTimerValue(uint16_t setTime)
 {
-    UART_LOG_Start();
+    timeTobeSet = setTime;
 }
 
-void displayLog_Stop()
+void incrementTimerValue()
 {
-    UART_LOG_Stop();   
+    ++timerCount;    
 }
 
-void displayLog_PrintString(char * const statements)
+void resetTimerValue()
 {
-    UART_LOG_PutString(statements);
+    timerCount = 0 ;
 }
 
-void displayLog_PrintChar(uint8_t value)
+uint8_t timeOutOccured()
 {
-    UART_LOG_PutChar(value);
+   if (timerCount == timeTobeSet)
+        return 1 ;
+    else
+        return 0;
+}
+
+uint16_t getTimerValue()
+{
+    return timerCount ;
 }

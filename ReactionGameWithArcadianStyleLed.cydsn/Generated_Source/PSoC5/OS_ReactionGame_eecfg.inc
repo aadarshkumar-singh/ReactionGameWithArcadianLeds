@@ -19,7 +19,7 @@
  **************************************************************************/
 
     /* TASK definition */
-    #define EE_MAX_TASK 3
+    #define EE_MAX_TASK 5
     #if EE_MAX_TASK > 0
     #define tsk_init 0
     #endif
@@ -30,10 +30,10 @@
     #define tsk_Background 2
     #endif
     #if EE_MAX_TASK > 3
-    #define Task_4 3
+    #define tsk_gameControl 3
     #endif
     #if EE_MAX_TASK > 4
-    #define Task_5 4
+    #define tsk_Timer 4
     #endif
     #if EE_MAX_TASK > 5
     #define Task_6 5
@@ -86,15 +86,15 @@
     #endif
     
     /* ALARM definition */
-    #define EE_MAX_ALARM 1U
+    #define EE_MAX_ALARM 2U
     #if EE_MAX_ALARM > 0
     #define alarm_ledFader 0U
     #endif
     #if EE_MAX_ALARM > 1
-    #define Alarm_2 1U
+    #define alarm_Timer 1U
     #endif
     #if EE_MAX_ALARM > 2
-    #define Alarm_3 2U
+    #define alarm_StartCountOfPressTime 2U
     #endif
     #if EE_MAX_ALARM > 3
     #define Alarm_4 3U
@@ -142,7 +142,7 @@
 
     /* Number of isr */
     #include "OS_ReactionGame_ISR_definition.inc"
-    #define EE_MAX_ISR_ID 0    
+    #define EE_MAX_ISR_ID 1    
     #define EE_MAX_ISR2   Number_ISR2
     #define EE_MAX_ISR2_WITH_RESOURCES Number_ISR2_Resources
     
@@ -243,7 +243,7 @@ extern void systick_handler(void);
 #endif
 
 #if EE_MAX_ISR_ID > 0
-extern void ISR_1(void);
+extern void isr_Button(void);
 #endif
 #if EE_MAX_ISR_ID > 1
 extern void ISR_2(void);
@@ -341,7 +341,7 @@ extern void ISR_16(void);
     #else
         #define TSK3_STCK 0
     #endif
-    #if (1 == 2) && (EE_MAX_TASK > 3)
+    #if (2 == 2) && (EE_MAX_TASK > 3)
         #define TSK4_STCK 1
     #else
         #define TSK4_STCK 0

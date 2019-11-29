@@ -1,5 +1,5 @@
 # ReactionGameWithArcadianStyleLed
-# 2019-11-26 00:08:32Z
+# 2019-11-29 00:29:01Z
 
 set_location "ClockBlock" clockblockcell -1 -1 0
 set_io "SEVEN_C(0)" iocell 1 5

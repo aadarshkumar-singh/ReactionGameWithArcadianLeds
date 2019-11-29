@@ -70,15 +70,11 @@
 * This prototype is for research purposes only. This software is provided "AS IS," without a warranty of any kind.
 **/
 
-
- 
 #ifndef DISPLAYLOG_H
 #define DISPLAYLOG_H
 
-/*****************************************************************************/
-/* Global pre-processor symbols/macros and type declarations                 */
-/*****************************************************************************/
-
+#include "UART_LOG.h"
+    
 //####################### Defines/Macros
 /** 
  * \brief a brief description of what the define is representing
@@ -118,7 +114,10 @@
  * @param <Format: copy of the parameter type and name - description>
  * @return <return description>
  */
-
+void displayLog_Start();
+void displayLog_Stop();
+void displayLog_PrintString(char * const statements) ;
+void displayLog_PrintChar(uint8_t value);
 
 
 

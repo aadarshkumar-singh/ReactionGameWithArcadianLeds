@@ -69,14 +69,12 @@
 * The user represents and warrants that it will NOT use or redistribute the Software for such purposes.
 * This prototype is for research purposes only. This software is provided "AS IS," without a warranty of any kind.
 **/
- 
-#ifndef REACTIONGAME_H
-#define REACTIONGAME_H
 
-#include "project.h"
-#include "timer.h"
-#include "seven.h"
-#include "displayLog.h"
+#ifndef TIMER_H
+#define TIMER_H
+
+#include "global.h"
+    
 /*****************************************************************************/
 /* Global pre-processor symbols/macros and type declarations                 */
 /*****************************************************************************/
@@ -87,20 +85,14 @@
 *
 * If needed, a more detailed description can be given below */
 
-    
 //####################### Enumerations
 /**
 * \brief Enumerations. Use brief, otherwise the index won't have a brief explanation.
 *
 * Detailed explaination of the enumeration.
 */
-typedef enum reactionGameState_e
-{
-   isIdle,
-   isTimeout,
-   isButtonPressed,
-}reactionGameState_t;
 
+    
 //####################### Structures
 /**
 * \brief The purpose as well as the members of a structure have to be documented.
@@ -108,8 +100,7 @@ typedef enum reactionGameState_e
 * Make clear what the structure is used for and what is the purpose of the members.
 */
 
-
-// Wrapper to allow representing the file in Together as class
+    
 
 /*****************************************************************************/
 /* Extern global variables                                                   */
@@ -123,13 +114,17 @@ typedef enum reactionGameState_e
 /*****************************************************************************/
 /* API functions                                                             */
 /*****************************************************************************/
-
+void setTimerValue(uint16_t setTime);
+void incrementTimerValue();
+void resetTimerValue();
+uint16_t getTimerValue();
+uint8_t timeOutOccured();
 /**
  * <Description>
  * @param <Format: copy of the parameter type and name - description>
  * @return <return description>
  */
-void processEventReactionGame(EventMaskType event, uint8_t pressedButton);
+
 
 
 /*****************************************************************************/
@@ -138,5 +133,4 @@ void processEventReactionGame(EventMaskType event, uint8_t pressedButton);
 
 
 
-
-#endif /* REACTIONGAME_H */
+#endif /* TIMER_H */
