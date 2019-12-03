@@ -1,4 +1,4 @@
---------------- Rebuild Started: 11/29/2019 01:28:50 Project: ReactionGameWithArcadianStyleLed, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 12/03/2019 19:47:17 Project: ReactionGameWithArcadianStyleLed, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\main.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\ledFaderArcadian.o"
 Deleting file ".\CortexM3\ARM_GCC_541\Debug\ledGlower.o"
@@ -323,6 +323,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S C:\aadarshxp\_MastersEmbeddedSystem\Projects\Assignment_EOS\EOS_Assignment_AadarshKumarSingh\assignment_erikaos\ReactionGameWithArcadianStyleLed.cydsn\CortexM3\ARM_GCC_541\Debug\ReactionGameWithArcadianStyleLed.elf
-Flash used: 10008 of 262144 bytes (3.8%).
-SRAM used: 3865 of 65536 bytes (5.9%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 11/29/2019 01:29:28 ---------------
+Flash used: 10168 of 262144 bytes (3.9%).
+SRAM used: 3857 of 65536 bytes (5.9%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Rebuild Succeeded: 12/03/2019 19:47:52 ---------------

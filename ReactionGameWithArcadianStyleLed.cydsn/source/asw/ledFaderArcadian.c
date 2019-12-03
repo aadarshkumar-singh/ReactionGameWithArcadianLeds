@@ -25,7 +25,13 @@
 /*****************************************************************************/
 /* Local pre-processor symbols/macros ('#define')                            */
 /*****************************************************************************/
-
+#define MIN_RANGE_RED_LIGHT 0
+#define MAX_RANGE_RED_LIGHT 255
+#define MIN_RANGE_YELLOW_LIGHT 255
+#define MAX_RANGE_YELLOW_LIGHT 510
+#define MIN_RANGE_GREEN_LIGHT 510
+#define MAX_RANGE_GREEN_LIGHT 765
+#define MAXIMUM_COUNTER_VALUE 1020
 /*****************************************************************************/
 /* Global variable definitions (declared in header file with 'extern')       */
 /*****************************************************************************/
@@ -69,18 +75,12 @@ void ledArcadianStart()
     else if ((arcadianCounter > 765) && (arcadianCounter <=1020))
     {
       led_PWM(LED_PWM_GREEN,(1020 - arcadianCounter)); 
-      //@ToDo: Check if red has to be added in the same range,
-      // If we add red in this state it wil glow twice , not the case 
-      // either we need to add a flag and gaurd the case or the  
-      // arcadianCounter has to be set to 256 rather than 0.
-      //led_PWM(LED_PWM_RED,arcadianCounter-765);
+      led_PWM(LED_PWM_RED,arcadianCounter-765);
     }
     else
     {
-     arcadianCounter = 0;
-     //arcadianCounter = 256;   
-    }
-    
+      arcadianCounter = 256;   
+    }    
 }
 
 void led_PWM(faderLed_t faderLedType, int ledPulseWidthValue )

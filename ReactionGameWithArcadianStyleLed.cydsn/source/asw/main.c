@@ -22,14 +22,10 @@
 #include "reactionGame.h"
 #include "timer.h"
 
-static uint8_t pressedButton = 0;
-
-
 ISR(systick_handler)
 {
     CounterTick(cnt_systick); //application counter
 }
-
 
 int main()
 {
@@ -68,7 +64,7 @@ TASK(tsk_init)
     // Must be started after interrupt reconfiguration
     EE_systick_start();
     
-    displayLog_PrintString("\nWelcome to The Reaction Game with Arcadian Style");
+    displayWelcomeMessage();    
     
     //Start the alarm with 100ms cycle time
     SetRelAlarm(alarm_ledFader,10,FADER_ALARM_EXPIRE_TIME);
@@ -116,7 +112,7 @@ TASK(tsk_gameControl)
         WaitEvent(ev_Button | ev_Timeout);
         GetEvent(tsk_gameControl,&ev);
         ClearEvent(ev);
-        processEventReactionGame(ev,pressedButton);
+        processEventReactionGame(ev);
     }
 }
 
@@ -128,12 +124,12 @@ ISR2(isr_Button)
 {
     if (TRUE == BUTTON_IsPressed(BUTTON_1))
     {
-        pressedButton = 1;
+        setButtonPressed(1);
         SetEvent(tsk_gameControl, ev_Button);
     }
     else if(TRUE == BUTTON_IsPressed(BUTTON_2))
     {
-        pressedButton = 2;
+        setButtonPressed(2);
         SetEvent(tsk_gameControl, ev_Button);
     }
 }

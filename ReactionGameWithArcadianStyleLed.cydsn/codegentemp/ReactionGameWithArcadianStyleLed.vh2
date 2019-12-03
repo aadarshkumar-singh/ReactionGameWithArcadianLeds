@@ -2,7 +2,7 @@
 --	Conversion of ReactionGameWithArcadianStyleLed.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Nov 29 01:28:58 2019
+--	Tue Dec 03 19:47:24 2019
 --
 
 USE cypress.cypress.all;

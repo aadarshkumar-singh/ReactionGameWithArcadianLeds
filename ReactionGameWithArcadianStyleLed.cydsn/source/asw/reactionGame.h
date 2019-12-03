@@ -76,6 +76,7 @@
 #include "project.h"
 #include "timer.h"
 #include "seven.h"
+#include "button.h"
 #include "displayLog.h"
 /*****************************************************************************/
 /* Global pre-processor symbols/macros and type declarations                 */
@@ -129,9 +130,10 @@ typedef enum reactionGameState_e
  * @param <Format: copy of the parameter type and name - description>
  * @return <return description>
  */
-void processEventReactionGame(EventMaskType event, uint8_t pressedButton);
-
-
+void processEventReactionGame(EventMaskType event);
+void displayWelcomeMessage();
+void displayMessage(char * const statements, int value);
+void displayScore(uint8_t score, uint16_t totalTime);
 /*****************************************************************************/
 /* Private stuff, only visible for Together, declared static in cpp - File   */
 /*****************************************************************************/

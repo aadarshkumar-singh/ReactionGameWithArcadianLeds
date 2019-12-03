@@ -4,7 +4,7 @@ cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabd
 </CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 2s.058ms
+Elaboration phase: Elapsed time ==> 1s.875ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
 HDL generation phase: Elapsed time ==> 0s.109ms
@@ -41,7 +41,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\aadarshxp\_
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Fri Nov 29 01:28:55 2019
+Tue Dec 03 19:47:21 2019
 
 
 ======================================================================
@@ -51,7 +51,7 @@ Options  :    -yv2 -q10 ReactionGameWithArcadianStyleLed.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Fri Nov 29 01:28:55 2019
+Tue Dec 03 19:47:21 2019
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.v'
@@ -103,7 +103,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\aadarshxp\_
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Fri Nov 29 01:28:56 2019
+Tue Dec 03 19:47:22 2019
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -140,7 +140,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\aadarshxp\_
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Fri Nov 29 01:28:57 2019
+Tue Dec 03 19:47:23 2019
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -2720,10 +2720,10 @@ CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\wa
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\bin\warp.exe
 Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\aadarshxp\_MastersEmbeddedSystem\Projects\Assignment_EOS\EOS_Assignment_AadarshKumarSingh\assignment_erikaos\ReactionGameWithArcadianStyleLed.cydsn\ReactionGameWithArcadianStyleLed.cyprj -dcpsoc3 ReactionGameWithArcadianStyleLed.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 2s.994ms
+Warp synthesis phase: Elapsed time ==> 2s.844ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Friday, 29 November 2019 01:28:58
+cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Tuesday, 03 December 2019 19:47:24
 Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\aadarshxp\_MastersEmbeddedSystem\Projects\Assignment_EOS\EOS_Assignment_AadarshKumarSingh\assignment_erikaos\ReactionGameWithArcadianStyleLed.cydsn\ReactionGameWithArcadianStyleLed.cyprj -d CY8C5888LTQ-LP097 ReactionGameWithArcadianStyleLed.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
@@ -5148,8 +5148,8 @@ Analog (SC/CT) Blocks         :    0 :    4 :    4 :  0.00 %
 DAC                           :      :      :      :        
   VIDAC                       :    0 :    4 :    4 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.218ms
-Tech Mapping phase: Elapsed time ==> 0s.312ms
+Technology Mapping: Elapsed time ==> 0s.250ms
+Tech Mapping phase: Elapsed time ==> 0s.343ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 Initial Analog Placement Results:
@@ -5174,7 +5174,7 @@ IO_3@[IOP=(1)][IoId=(3)] : SEVEN_E(0) (fixed)
 IO_2@[IOP=(1)][IoId=(2)] : SEVEN_F(0) (fixed)
 IO_1@[IOP=(1)][IoId=(1)] : SEVEN_G(0) (fixed)
 IO_5@[IOP=(3)][IoId=(5)] : SEVEN_SELECT(0) (fixed)
-Analog Placement phase: Elapsed time ==> 0s.037ms
+Analog Placement phase: Elapsed time ==> 0s.031ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 Analog Routing phase: Elapsed time ==> 0s.000ms
@@ -5192,11 +5192,11 @@ Dump of CyP35AnalogRoutingResultsDB
 IsVddaHalfUsedForComp = False
 IsVddaHalfUsedForSar0 = False
 IsVddaHalfUsedForSar1 = False
-Analog Code Generation phase: Elapsed time ==> 0s.339ms
+Analog Code Generation phase: Elapsed time ==> 0s.281ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
-I2076: Total run-time: 1.5 sec.
+I2076: Total run-time: 1.4 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -5220,14 +5220,14 @@ PLD Packing Summary
 <CYPRESSTAG name="Packed PLD Contents">
 Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
 </CYPRESSTAG>
-PLD Packing: Elapsed time ==> 0s.000ms
+PLD Packing: Elapsed time ==> 0s.015ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Partitioning">
 <CYPRESSTAG name="Initial Partitioning Summary">
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.099ms
+Partitioning: Elapsed time ==> 0s.093ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -7778,12 +7778,12 @@ Port | Pin | Fixed |      Type |       Drive Mode |            Name | Connection
 </CYPRESSTAG>
 </CYPRESSTAG>
 Digital component placer commit/Report: Elapsed time ==> 0s.093ms
-Digital Placement phase: Elapsed time ==> 2s.037ms
+Digital Placement phase: Elapsed time ==> 1s.953ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata" --vh2-path "ReactionGameWithArcadianStyleLed_r.vh2" --pcf-path "ReactionGameWithArcadianStyleLed.pco" --des-name "ReactionGameWithArcadianStyleLed" --dsf-path "ReactionGameWithArcadianStyleLed.dsf" --sdc-path "ReactionGameWithArcadianStyleLed.sdc" --lib-path "ReactionGameWithArcadianStyleLed_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 2s.200ms
+Digital Routing phase: Elapsed time ==> 2s.078ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
 Bitstream Generation phase: Elapsed time ==> 0s.296ms
@@ -7793,7 +7793,7 @@ Bitstream Verification phase: Elapsed time ==> 0s.062ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in ReactionGameWithArcadianStyleLed_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.600ms
+Static timing analysis phase: Elapsed time ==> 0s.525ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
@@ -7801,9 +7801,9 @@ Data reporting phase: Elapsed time ==> 0s.000ms
 <CYPRESSTAG name="Database update...">
 Design database save phase: Elapsed time ==> 0s.265ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 6s.246ms
+cydsfit: Elapsed time ==> 5s.916ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 6s.246ms
-API generation phase: Elapsed time ==> 3s.680ms
-Dependency generation phase: Elapsed time ==> 0s.036ms
-Cleanup phase: Elapsed time ==> 0s.001ms
+Fitter phase: Elapsed time ==> 5s.916ms
+API generation phase: Elapsed time ==> 3s.656ms
+Dependency generation phase: Elapsed time ==> 0s.046ms
+Cleanup phase: Elapsed time ==> 0s.000ms

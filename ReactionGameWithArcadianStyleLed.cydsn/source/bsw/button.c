@@ -44,7 +44,7 @@
 /*****************************************************************************/
 /* Local variable definitions ('static')                                     */
 /*****************************************************************************/
-
+static int pressedButton = 0;
 
 
 /*****************************************************************************/
@@ -89,4 +89,13 @@ boolean_t BUTTON_IsPressed(BUTTON_id_t button)
     }
     
     return result;
+}
+void setButtonPressed(int buttonNumber)
+{
+    pressedButton = buttonNumber;    
+}
+
+int getPressedButton()
+{
+    return pressedButton ;   
 }

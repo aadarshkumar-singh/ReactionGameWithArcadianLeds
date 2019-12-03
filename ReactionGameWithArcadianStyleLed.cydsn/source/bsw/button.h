@@ -126,6 +126,10 @@ RC_t BUTTON_Init(cyisraddress address);
  */
 boolean_t BUTTON_IsPressed(BUTTON_id_t button);
 
+void setButtonPressed(int buttonNumber);
+
+int getPressedButton();
+
 /*****************************************************************************/
 /* Private stuff, only visible for Together, declared static in cpp - File   */
 /*****************************************************************************/
