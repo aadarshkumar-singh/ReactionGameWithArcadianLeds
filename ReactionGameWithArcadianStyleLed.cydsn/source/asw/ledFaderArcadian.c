@@ -1,20 +1,12 @@
 /**
-* \file <filename>
-* \author <author-name>
-* \date <date>
+* \file <ledFaderArcadian.c>
+* \author Aadarsh Kumar Singh <aadarsh.k.singh@stud.h-da.de>
+* \date <26.11.2019>
 *
-* \brief <Symbolic File name>
-*
-* \copyright Copyright ©2016
-* Department of electrical engineering and information technology, Hochschule Darmstadt - University of applied sciences (h_da). All Rights Reserved.
-* Permission to use, copy, modify, and distribute this software and its documentation for educational, and research purposes in the context of non-commercial
-* (unless permitted by h_da) and official h_da projects, is hereby granted for enrolled students of h_da, provided that the above copyright notice,
-* this paragraph and the following paragraph appear in all copies, modifications, and distributions.
-* Contact Prof.Dr.-Ing. Peter Fromm, peter.fromm@h-da.de, Birkenweg 8 64295 Darmstadt - GERMANY for commercial requests.
-*
-* \warning This software is a PROTOTYPE version and is not designed or intended for use in production, especially not for safety-critical applications!
-* The user represents and warrants that it will NOT use or redistribute the Software for such purposes.
-* This prototype is for research purposes only. This software is provided "AS IS," without a warranty of any kind.
+* \brief <ledFaderArcadian.c>
+* Source file for implementation of Led Fader Sequence in Arcadian Style.
+* Leds Red, Yellow and Green produce Arcadian LED Fader Pattern
+* using PWM.  
 */
 
 /*****************************************************************************/
@@ -23,41 +15,33 @@
 #include "ledFaderArcadian.h"
 
 /*****************************************************************************/
-/* Local pre-processor symbols/macros ('#define')                            */
-/*****************************************************************************/
-#define MIN_RANGE_RED_LIGHT 0
-#define MAX_RANGE_RED_LIGHT 255
-#define MIN_RANGE_YELLOW_LIGHT 255
-#define MAX_RANGE_YELLOW_LIGHT 510
-#define MIN_RANGE_GREEN_LIGHT 510
-#define MAX_RANGE_GREEN_LIGHT 765
-#define MAXIMUM_COUNTER_VALUE 1020
-/*****************************************************************************/
-/* Global variable definitions (declared in header file with 'extern')       */
-/*****************************************************************************/
-
-/*****************************************************************************/
-/* Local type definitions ('typedef')                                        */
-/*****************************************************************************/
-
-/*****************************************************************************/
 /* Local variable definitions ('static')                                     */
 /*****************************************************************************/
+
+/**
+ * \brief A counter which is incremented with step of LED_INCREMENT_PULSE_WIDTH
+ *        every 5 ms
+ */
 static int arcadianCounter = 0;
 
-/*****************************************************************************/
-/* Local function prototypes ('static')                                      */
-/*****************************************************************************/
-
-
-/*****************************************************************************/
-/* Function implementation - global ('extern') and local ('static')          */
-/*****************************************************************************/
-
+/**
+ * \brief  API which implements the pattern for Arcadian Style Led Fader.
+ * @return void 
+ * \note   The Task ledFader Calls this API every 5 ms. 
+ */
 void ledArcadianStart()
 {
-    arcadianCounter = arcadianCounter + ARCADIAN_LED_INCREMENT_PULSE_WIDTH ;
-    
+    /* The counter counts with step of LED_INCREMENT_PULSE_WIDTH and can
+       never be negative*/
+    if (LED_INCREMENT_PULSE_WIDTH > 0)
+    {
+        arcadianCounter = arcadianCounter + LED_INCREMENT_PULSE_WIDTH ;    
+    }
+    else
+    {
+        arcadianCounter = arcadianCounter + 1 ;
+    }
+   
     if ((arcadianCounter > 0)  &&  (arcadianCounter <=255))
     {
     led_PWM(LED_PWM_RED,arcadianCounter);  
@@ -83,6 +67,14 @@ void ledArcadianStart()
     }    
 }
 
+/**
+ * \brief  sets a given Pulse width value to a Led specified in the parameter 
+ * @param  faderLedType : type<faderLed_t> Enum for type of Led Fader
+ * @param  ledPulseWidthValue : The Pulse width value to be set in given Led 
+ * @return void 
+ * \note   maximum led value 65535 minimum led value is 0.
+ *         Supported for red,yellow,green Led.
+ */
 void led_PWM(faderLed_t faderLedType, int ledPulseWidthValue )
 {
     switch(faderLedType)

@@ -126,8 +126,18 @@ RC_t BUTTON_Init(cyisraddress address);
  */
 boolean_t BUTTON_IsPressed(BUTTON_id_t button);
 
+/**
+ * \brief Set the Number of Button that is pressed by the user 
+ * @param int buttonNumber - Number of the button
+ * @return void
+ */
 void setButtonPressed(int buttonNumber);
 
+/**
+ * \brief Returns the button number that is pressed.
+ * @param <none>
+ * @return int : Button number that is pressed
+ */
 int getPressedButton();
 
 /*****************************************************************************/

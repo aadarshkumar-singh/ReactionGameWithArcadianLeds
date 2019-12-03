@@ -11,8 +11,7 @@
 */
 #include "project.h"
 #include "global.h"
-
-//#include "button.h"
+#include "button.h"
 #include "led.h"
 #include "seven.h"
 #include "ledFaderArcadian.h"
@@ -22,6 +21,9 @@
 #include "reactionGame.h"
 #include "timer.h"
 
+/**
+ * \brief ISR which will increment the systick counter every ms
+ */
 ISR(systick_handler)
 {
     CounterTick(cnt_systick); //application counter
@@ -31,7 +33,7 @@ int main()
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
     
-//Set systick period to 1 ms. Enable the INT and start it.
+    //Set systick period to 1 ms. Enable the INT and start it.
 	EE_systick_set_period(MILLISECONDS_TO_TICKS(1, BCLK__BUS_CLK__HZ));
 	EE_systick_enable_int();
 	EE_systick_start();
@@ -51,11 +53,10 @@ int main()
 
 TASK(tsk_init)
 {
-    //Init MCAL Drivers
-    LED_Init();
-    SEVEN_Init();
-    //Initialise UART
-    displayLog_Start();
+    /** Init MCAL Drivers */
+    LED_Init();  /** Led Initialisation */
+    SEVEN_Init(); /** Seven Segment Initialisation*/
+    displayLog_Start(); /** Initialise UART */
         
     //Reconfigure ISRs with OS parameters.
     //This line MUST be called after the hardware driver
@@ -64,25 +65,42 @@ TASK(tsk_init)
     // Must be started after interrupt reconfiguration
     EE_systick_start();
     
+    /** Displays the Welcome Message at start of every game.*/
     displayWelcomeMessage();    
     
-    //Start the alarm with 100ms cycle time
-    SetRelAlarm(alarm_ledFader,10,FADER_ALARM_EXPIRE_TIME);
-    SetRelAlarm(alarm_Timer,10,1);
+    /** Start Cyclic alarm for Led Fader and RGB Glower every FADER_ALARM_EXPIRE_TIME ms*/
+    SetRelAlarm(alarm_ledFader,FADER_ALARM_EXPIRE_TIME,FADER_ALARM_EXPIRE_TIME);
+    
+    /** Start Alarm for ONE_MS_TIMER */
+    SetRelAlarm(alarm_Timer,ONE_MS_TIMER,ONE_MS_TIMER);
 
+    /** Activate Extended Task for Reaction Game Control */
     ActivateTask(tsk_gameControl);
+    
+    /** Activate Extended Background Task */
     ActivateTask(tsk_Background);
+    
+    /** Terminates initialisation Task*/
+    TerminateTask();
+}
+
+/**
+ * \brief Task to execute Led Fader and Led Glower every 5 ms.
+ */
+TASK(tsk_ledFader)
+{
+    /** Led Fader with Arcadian Style*/
+    ledArcadianStart();
+    
+    /** Glow RGB Led in specified sequence in Glow table*/
+    glowRGBPwmLedInSequence(); 
     
     TerminateTask();
 }
 
-TASK(tsk_ledFader)
-{
-    ledArcadianStart();
-    glowRGBPwmLedInSequence();    
-    TerminateTask();
-}
-
+/**
+ * \brief Task to increment timer count every 1 ms and set event when a timeout occurs.
+ */
 TASK(tsk_Timer)
 {
     incrementTimerValue();
@@ -94,6 +112,9 @@ TASK(tsk_Timer)
     TerminateTask();
 }
 
+/**
+ * \brief Ideal Tasks which does no operation
+ */
 TASK(tsk_Background)
 {
     while(1)
@@ -103,6 +124,10 @@ TASK(tsk_Background)
     }
 }
 
+/**
+ * \brief Task which process and responds to all events that occur 
+ *        During the course of the reaction game.
+ */
 TASK(tsk_gameControl)
 {
     EventMaskType ev = 0;   
@@ -119,7 +144,9 @@ TASK(tsk_gameControl)
 /********************************************************************************
  * ISR Definitions
  ********************************************************************************/
-
+/**
+ * \brief ISR to check if button 1/2 is pressed.
+ */
 ISR2(isr_Button)
 {
     if (TRUE == BUTTON_IsPressed(BUTTON_1))

@@ -164,10 +164,25 @@ RC_t LED_Toggle(LED_id_t ledId);
  */
 RC_t LED_RGB_Set(uint8_t red, uint8_t green, uint8_t blue);
 
+/**
+ * \brief Set the Pulse width of Red Led
+ * @param uint8_t compareCount - Brightness of red Led
+ * @return RC_SUCCESS if function was executed as exepected, other error code in case of error
+ */
 RC_t LED_PWM_RED_SetPulseWidth(uint8_t compareCount);
 
+/**
+ * \brief Set the Pulse width of Green Led
+ * @param uint8_t compareCount - Brightness of Green Led
+ * @return RC_SUCCESS if function was executed as exepected, other error code in case of error
+ */
 RC_t LED_PWM_GREEN_SetPulseWidth(uint8_t compareCount);
 
+/**
+ * \brief Set the Pulse width of Yellow Led
+ * @param uint8_t compareCount - Brightness of Yellow Led
+ * @return RC_SUCCESS if function was executed as exepected, other error code in case of error
+ */
 RC_t LED_PWM_YELLOW_SetPulseWidth(uint8_t compareCount);
 
 /*****************************************************************************/
